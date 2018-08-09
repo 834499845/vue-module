@@ -27,10 +27,10 @@
   </div>
 </template>
 <script>
-import dateModel from "./pickSlelct/dateModel";
-import selectModel from "./pickSlelct/selectModel";
-import timeModel from "./pickSlelct/timeModel";
-import dateTimeModel from "./pickSlelct/dateTimeModel";
+import dateModel from "./dateModel";
+import selectModel from "./selectModel";
+import timeModel from "./timeModel";
+import dateTimeModel from "./dateTimeModel";
 export default {
   components: {
     dateModel,
@@ -132,7 +132,7 @@ export default {
   filters: {}
 };
 </script>
-<style>
+<style scoped>
 .mianTime {
   width: 100%;
   min-height: 44px;

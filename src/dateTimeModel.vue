@@ -1,11 +1,10 @@
-// 年月日时分秒
 <template>
   <div class="timeModelMian" v-if="isDateShow">
-    <div class="pickBg" @click="cancelClick">
+    <div class="pickClor" @click="calicClick">
     </div>
     <div class="pickMain">
       <div class="butPick">
-        <div class="butPickLeft" @click="cancelClick">
+        <div class="butPickLeft" @click="calicClick">
           取消
         </div>
         <div class="butPickRight" @click="confimClick">
@@ -82,7 +81,7 @@ export default {
   },
   methods: {
     // 取消
-    cancelClick() {
+    calicClick() {
       this.$emit("click", "cancel");
     },
     // 确认
@@ -429,8 +428,8 @@ export default {
   filters: {}
 };
 </script>
-<style>
-.pickBg {
+<style scoped>
+.pickClor {
   height: calc(100vh - 256px);
   background: rgba(0, 0, 0, 0.4);
   width: 100%;

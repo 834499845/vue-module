@@ -1,12 +1,13 @@
 export default [
   {
     path: "/",
-    redirect: "module"
+    redirect: "homeLog"
   },
   {
-    path: "/module",
+    // 日志主页
+    path: "/homeLog",
     component: function(resolve) {
-      require(["./mobileModule/module.vue"], resolve);
+      require(["./homeLog.vue"], resolve);
     }
   }
 ];
