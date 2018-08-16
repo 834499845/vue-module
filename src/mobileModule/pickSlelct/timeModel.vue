@@ -1,10 +1,11 @@
+// 时分秒
 <template>
   <div class="timeModelMian" v-if="isDateShow">
-    <div class="pickClor" @click="calicClick">
+    <div class="pickBg" @click="cancelClick">
     </div>
     <div class="pickMain">
       <div class="butPick">
-        <div class="butPickLeft" @click="calicClick">
+        <div class="butPickLeft" @click="cancelClick">
           取消
         </div>
         <div class="butPickRight" @click="confimClick">
@@ -65,7 +66,7 @@ export default {
   },
   methods: {
     // 取消
-    calicClick() {
+    cancelClick() {
       this.$emit("click", "cancel");
     },
     // 确认
@@ -149,7 +150,6 @@ export default {
         self.cutS.end = 59;
       }
       self.sListFun();
-      // console.log(self.hVal, self.mVal, self.sVal);
     },
     // 天选中
     changeDayClick(val) {
@@ -311,7 +311,7 @@ export default {
 };
 </script>
 <style scoped>
-.pickClor {
+.pickBg {
   height: calc(100vh - 256px);
   background: rgba(0, 0, 0, 0.4);
   width: 100%;

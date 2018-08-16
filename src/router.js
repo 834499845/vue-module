@@ -1,13 +1,20 @@
 export default [
   {
     path: "/",
-    redirect: "homeLog"
+    redirect: "verification"
   },
   {
-    // 日志主页
-    path: "/homeLog",
+    // 选择器
+    path: "/module",
     component: function(resolve) {
-      require(["./homeLog.vue"], resolve);
+      require(["./mobileModule/pickSlelct/index.vue"], resolve);
+    }
+  },
+  {
+    // 表单验证
+    path: "/verification",
+    component: function(resolve) {
+      require(["./pcModule/verification/verification.vue"], resolve);
     }
   }
 ];

@@ -69,6 +69,7 @@ export default {
     this.$el.addEventListener("touchstart", this.itemTouchStart);
     this.$el.addEventListener("touchmove", this.itemTouchMove);
     this.$el.addEventListener("touchend", this.itemTouchEnd);
+    this.$el.addEventListener("touchcancel", this.touchcancel);
     /* 初始化状态 */
     let index = this.listData.indexOf(self.value);
     if (index == -1) {
@@ -140,6 +141,26 @@ export default {
       event.preventDefault();
     },
     itemTouchEnd(event) {
+      let finger = event.changedTouches[0];
+      this.finger.lastY = finger.pageY;
+      this.finger.lastTime = event.timestamp || Date.now();
+      let move = this.finger.lastY - this.finger.startY;
+      /* 计算速度 */
+      /* 速度计算说明
+           * 当时间小于300毫秒(相当于快速滑动) 最后的移动距离等于 move + 减速运动距离
+           * */
+      let time = this.finger.lastTime - this.finger.startTime;
+      let v = move / time; // 运动距离 / 运动时间
+      if (time <= 300) {
+        move = v * this.accelerated * time;
+        time = 1000 + time * this.accelerated;
+        this.setStyle(move, "end", time);
+      } else {
+        this.setStyle(move, "end");
+      }
+    },
+    // ios 上滑出现控制中心时 防止无法回归
+    touchcancel(event) {
       let finger = event.changedTouches[0];
       this.finger.lastY = finger.pageY;
       this.finger.lastTime = event.timestamp || Date.now();
@@ -246,6 +267,7 @@ export default {
     this.$el.removeEventListener("touchstart", this.itemTouchStart);
     this.$el.removeEventListener("touchmove", this.itemTouchMove);
     this.$el.removeEventListener("touchend", this.itemTouchEnd);
+    this.$el.removeEventListener("touchcancel", this.touchcancel);
   }
 };
 </script>

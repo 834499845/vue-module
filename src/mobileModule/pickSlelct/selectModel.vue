@@ -1,10 +1,10 @@
 <template>
-  <div class="selectModel">
-    <div class="pickClor" @click="calicClick">
+  <div class="selectModel" v-if="isShow">
+    <div class="pickBg" @click="cancelClick">
     </div>
     <div class="pickMain">
       <div class="butPick">
-        <div class="butPickLeft" @click="calicClick">
+        <div class="butPickLeft" @click="cancelClick">
           取消
         </div>
         <div class="butPickRight" @click="confimClick">
@@ -19,17 +19,15 @@
 </template>
 
 <script>
-import pickModel from "./pickModel";
+import pickModel from "./pickModel"; // 资讯
 export default {
   props: {
     show: {
       type: Boolean,
       default: false
     },
-    pitch: {}
-    // lists: {
-    //   default: [1, 2, 3, 4, 5, 6, 7, 8]
-    // }
+    pitch: {},
+    lists: {}
   },
   components: {
     pickModel
@@ -37,13 +35,12 @@ export default {
   data() {
     return {
       selectVal: "",
-      isShow: true,
-      lists: [1, 2, 3, 4, 5, 6, 7, 8]
+      isShow: false
     };
   },
   methods: {
     // 取消
-    calicClick() {
+    cancelClick() {
       this.$emit("click", "cancel");
     },
     // 确认
@@ -60,7 +57,6 @@ export default {
       this.isShow = val;
     },
     pitch(val) {
-      console.log(val);
       this.selectVal = val;
     }
   },
@@ -75,14 +71,14 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-.pickClor {
-  height: calc(100vh - 280px);
+.pickBg {
+  height: calc(100vh - 256px);
   background: rgba(0, 0, 0, 0.4);
   width: 100%;
 }
 
 .pickMain {
-  height: 280px;
+  height: 256px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -122,7 +118,7 @@ export default {
   justify-content: space-between;
   flex-wrap: nowrap;
   background-color: #fff;
-  min-height: 240px;
+  height: 206px;
 }
 
 .selectModel {
